@@ -1,0 +1,25 @@
+{% extends 'template.html' %}
+{% from 'f.j2' import textfield, passwordfield, submitbutton, nav %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block heading %}Home Page{% endblock %}
+
+{% block content %}
+<div class="row">
+    {{ nav() }}
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        <p>You have successfully logged out.</p>
+    </div>
+    <div class="col-sm-4">
+        <p>To login again, use the menu along the top and go to the home page.</p>
+    </div>
+    <div class="col-sm-4">
+        &nbsp;
+    </div>
+</div>
+
+{% endblock %}

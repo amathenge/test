@@ -1,0 +1,24 @@
+{% extends 'template.html' %}
+{% from 'f.j2' import login, nav %}
+
+{% block title %}Second Home Page{% endblock %}
+
+{% block heading %}Second Home Page{% endblock %}
+
+{% block content %}
+<div class="row">
+    {{ nav() }}
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        &nbsp;
+    </div>
+    <div class="col-sm-4">
+        {{ login(url_for('loginform'), recaptcha) }}
+    </div>
+    <div class="col-sm-4">
+        &nbsp;
+    </div>
+</div>
+
+{% endblock %}

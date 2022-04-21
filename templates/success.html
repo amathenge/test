@@ -1,0 +1,15 @@
+{% extends 'template.html' %}
+
+{% block title %}Login Form{% endblock %}
+
+{% block heading %}Login Form{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <p class="display-1">You Have Logged In</p>
+    </div>
+    <div class="row">
+        <p>User: {{ credentials.user }}</p>
+        <p>Password: {{ credentials.password }}</p>
+    </div>
+{% endblock %}
