@@ -2,13 +2,14 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_recaptcha import ReCaptcha
 import os
 from database import get_db
+import cred
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.urandom(24)
 # recaptcha
-app.config['RECAPTCHA_SITE_KEY'] = '6LfhEEwcAAAAAPaQwnmUoHBZnUTk05IilqwxWKAv'
-app.config['RECAPTCHA_SECRET_KEY'] = '6LfhEEwcAAAAAO70jSEh6MtilqqrTuPKxs6x9aGt'
+app.config['RECAPTCHA_SITE_KEY'] = cred.recaptcha_site_key
+app.config['RECAPTCHA_SECRET_KEY'] = cred.recaptcha_secret_key
 
 recaptcha = ReCaptcha(app)
 
