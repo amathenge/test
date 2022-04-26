@@ -1,0 +1,34 @@
+{% extends 'template.html' %}
+{% from 'f.j2' import textfield, passwordfield, submitbutton, nav %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block heading %}Home Page{% endblock %}
+
+{% block content %}
+<div class="row">
+    {{ nav() }}
+</div>
+
+<div class="row">
+    <table class="table table-striped">
+        <tr>
+            <th>&nbsp;</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Description</th>
+        </tr>
+        {% for row in users %}
+        <tr>
+            <td scope="row">{{ loop.index }}</td>
+            <td>{{ row.firstname }}</td>
+            <td>{{ row.lastname }}</td>
+            <td>{{ row.email }}</td>
+            <td>{{ row.description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
