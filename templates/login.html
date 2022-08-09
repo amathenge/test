@@ -14,11 +14,25 @@
         &nbsp;
     </div>
     <div class="col-sm-4">
-        {{ login(url_for('login'), recaptcha) }}
+        {{ login(url_for('login')) }}
     </div>
     <div class="col-sm-4">
         &nbsp;
     </div>
 </div>
-
+<div class="row">
+    <div class="col-sm-4">
+        &nbsp;
+    </div>
+    <div class="col-sm-4">
+        {% if msg %}
+            {{ msg }}
+        {% else %}
+            &nbsp;
+        {% endif %}
+    </div>
+    <div class="col-sm-4">
+        &nbsp;
+    </div>
+</div>
 {% endblock %}

@@ -43,8 +43,9 @@
 <div class="collapse navbar-collapse" id="nav001">
     <div class="navbar-nav">
     <a class="nav-item nav-link text-primary" href="{{ url_for('home') }}">Home</a>
-    <a class="nav-item nav-link text-primary" href="{{ url_for('login') }}">Login</a>
     <a class="nav-item nav-link text-primary" href="{{ url_for('users') }}">Show Users</a>
+    <a class="nav-item nav-link text-primary" href="{{ url_for('fawa') }}">FAWA</a>
+    <a class="nav-item nav-link text-primary" href="{{ url_for('fawa_pay') }}">FAWA 2</a>
     </div>
 </div>
 <div class="navbar-nav navbar-right">
@@ -74,7 +75,7 @@
 </table>
 {%- endmacro %}
 
-{% macro login(url, recaptcha) -%}
+{% macro login(url, recaptcha=None) -%}
 <h1 class="text-center">Login Form</h1>
 <form action="{{ url }}" method="POST">
 <div class="form-group my-2">
@@ -86,7 +87,9 @@
     <input class="form-control" type="password" id="password" name="password" maxlength="20" required>
 </div>
 <div class="form-group d-grid my-2 text-center">
-    {{ recaptcha }}
+    {% if recaptcha != None %}
+        {{ recaptcha }}
+    {% endif %}
     <button class="btn btn-primary mt-3" type="submit">LOGIN</button>
 </div>
 </form>

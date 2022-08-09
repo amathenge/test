@@ -1,0 +1,87 @@
+{% extends 'template.html' %}
+{% from 'f.j2' import textfield, passwordfield, submitbutton, nav %}
+
+{% block title %}FAWA Page{% endblock %}
+
+{% block heading %}FAWA Interest Calculator (by monthly payment){% endblock %}
+
+{% block content %}
+<div class="row">
+    {{ nav() }}
+</div>
+
+<form action="{{ url_for('fawa_pay') }}" method="POST">
+    <div class="row">
+        <div class="col-3">
+            <div class="form-group my-2">
+                <label for="payment">Monthly Payment</label>
+                <input class="form-control" type="text" id="payment" name="payment" maxlength="10">
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group my-2">
+                <label for="loan">Loan Amount</label>
+                <input class="form-control" type="text" id="loan" name="loan" maxlength="10">
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group my-2">
+                <label for="Interest Rate">Interest Rate (monthly)</label>
+                <input class="form-control" type="text" id="rate" name="rate" value="0.008">
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group my-2 text-center">
+                <button class="btn btn-primary mt-3" type="submit">Calculate</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="h4">Calculation Results</p>
+            {% if reply != None %}
+                {{ reply }}
+            {% endif %}
+            {% if totals != None %}
+            <p>Total Repayment {{ "%.2f"|format(totals.p) }} with Total Interest = {{ "%.2f"|format(totals.i) }} in Months = {{ "%.2f"|format(totals.m) }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        {% if data != None %}
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Month</th>
+                        <th scope="col">Balance</th>
+                        <th scope="col">Monthly Payment<br/><strong>(P+I)</strong></th>
+                        <th scope="col">Interest<br/><strong>(I)</strong></th>
+                        <th scope="col">Principal Paid<br/><strong>(P)</strong></th>
+                        <th scope="col">Cumulative<br/>Interest</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                    <tr>
+                        <td scope="row">{{ row.m }}</td>
+                        <td>{{ "%.2f"|format(row.l) }}</td>
+                        <td>{{ "%.2f"|format(row.p) }}</td>
+                        <td>{{ "%.2f"|format(row.i) }}</td>
+                        <td>{{ "%.2f"|format(row.pp) }}</td>
+                        <td>{{ "%.2f"|format(row.ci) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</form>
+
+{% endblock %}
